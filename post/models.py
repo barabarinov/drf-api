@@ -30,7 +30,7 @@ class Like(models.Model):
     def __repr__(self) -> str:
         return (
             f"Like(id={self.id}, "
-            f"user={self.user.get_full_name}, "
+            f"user={self.user_id}, "
             f"post={self.post.id}, "
             f"created_at={self.created_at})"
         )
