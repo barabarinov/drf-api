@@ -13,11 +13,13 @@ class Post(models.Model):
 
     def __repr__(self) -> str:
         return (
-            f"Post(id={self.id}, content={self.content[:20]}, likes={self.likes_count})"
+            f"<Post(id={self.id}, author={self.author.username}, "
+            f"content={self.content[:20]!r}, likes_count={self.likes_count}, "
+            f"created_at={self.created_at})>"
         )
 
     def __str__(self) -> str:
-        return f"Post: {self.content[:15]} by {self.author} with {self.likes_count} likes"
+        return f"Post by {self.author.username} ({self.likes_count} likes): {self.content[:15]}..."
 
 
 class Like(models.Model):
@@ -29,8 +31,9 @@ class Like(models.Model):
 
     def __repr__(self) -> str:
         return (
-            f"Like(id={self.id}, "
-            f"user={self.user_id}, "
-            f"post={self.post.id}, "
-            f"created_at={self.created_at})"
+            f"<Like(id={self.id}, user={self.user.username}, post_id={self.post.id}, "
+            f"created_at={self.created_at})>"
         )
+
+    def __str__(self) -> str:
+        return f"Like by {self.user.username} on Post ID {self.post.id}"
