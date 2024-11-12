@@ -90,4 +90,5 @@ This is a simple Django REST framework project with user authentication, post cr
 
 ### Analytics
 
-- `GET /api/posts/analytics/`: Get analytics on likes within a date range. Example: `/api/posts/analytics/?date_from=2024-01-01&date_to=2024-12-31`.
+- `GET /api/posts/analytics/`: Get analytics on likes within a date range.  
+  Example: `/api/posts/analytics/?date_from=2024-01-01&date_to=2024-12-31`.
