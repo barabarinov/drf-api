@@ -6,7 +6,7 @@ router = DefaultRouter()
 router.register("posts", PostViewSet)
 
 urlpatterns = [
+    path("posts/analytics/", Analytics.as_view(), name="analytics"),
+    path("posts/<int:post_id>/like/", LikePost.as_view(), name="like_post"),
     path("", include(router.urls)),
-    path("<int:post_id>/like/", LikePost.as_view(), name="like_post"),
-    path("analytics/", Analytics.as_view(), name="analytics"),
 ]
