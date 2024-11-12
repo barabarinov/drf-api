@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db.models import Count
 from rest_framework import viewsets, status
 from rest_framework.generics import get_object_or_404
@@ -36,9 +38,15 @@ class Analytics(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request: Request) -> Response:
-        date_from = request.query_params.get('date_from')
-        date_to = request.query_params.get('date_to')
-        likes = Like.objects.filter(
-            created_at__date__range=[date_from, date_to]
-        ).extra({'day': 'date(created_at)'}).values('day').annotate(count=Count('id'))
+        today = datetime.today().date()
+
+        date_from = request.query_params.get("date_from", today.replace(day=1))
+        date_to = request.query_params.get("date_to", today)
+
+        likes = (
+            Like.objects.filter(created_at__date__range=[date_from, date_to])
+            .extra({"day": "date(created_at)"})
+            .values("day")
+            .annotate(count=Count("id"))
+        )
         return Response(likes)
