@@ -38,6 +38,7 @@ This is a simple Django REST framework project with user authentication, post cr
 
    ```bash
    pip install -r requirements.txt
+   ```
    
 4.	Set up environment variables:
 
