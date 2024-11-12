@@ -34,13 +34,13 @@ This is a simple Django REST framework project with user authentication, post cr
    python -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    
-3.	Install dependencies:
+3. Install dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
    
-4.	Set up environment variables:
+4. Set up environment variables:
 
    Create a `.env` file in the project root and add your `SECRET_KEY`:
 
@@ -48,7 +48,7 @@ This is a simple Django REST framework project with user authentication, post cr
    SECRET_KEY=<your-secret-key>
    ```
    
-5.	Run migrations to set up the database:
+5. Run migrations to set up the database:
 
    ```bash
    python manage.py makemigrations
@@ -57,13 +57,13 @@ This is a simple Django REST framework project with user authentication, post cr
    ```bash
    python manage.py migrate
 
-6.	Create a superuser to access the Django admin panel:
+6. Create a superuser to access the Django admin panel:
 
    ```bash
    python manage.py createsuperuser
    ```
    
-7.	Start the development server:
+7. Start the development server:
 
    ```bash
    python manage.py runserver
