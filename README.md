@@ -46,6 +46,7 @@ This is a simple Django REST framework project with user authentication, post cr
 
    ```bash
    SECRET_KEY=<your-secret-key>
+   ```
    
 5.	Run migrations to set up the database:
 
@@ -60,11 +61,13 @@ This is a simple Django REST framework project with user authentication, post cr
 
    ```bash
    python manage.py createsuperuser
+   ```
    
 7.	Start the development server:
 
    ```bash
    python manage.py runserver
+   ```
 
 ## API Endpoints
 
