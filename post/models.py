@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -36,4 +35,4 @@ class Like(models.Model):
         )
 
     def __str__(self) -> str:
-        return f"Like by {self.user.username} on Post ID {self.post.id}"
+        return f"Like by {self.user.username} on Post ID {self.post.id} at {self.created_at.date()}"
