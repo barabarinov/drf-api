@@ -43,6 +43,21 @@ class Analytics(APIView):
         date_from = request.query_params.get("date_from", today.replace(day=1))
         date_to = request.query_params.get("date_to", today)
 
+        try:
+            date_from = datetime.strptime(date_from, "%Y-%m-%d").date()
+            date_to = datetime.strptime(date_to, "%Y-%m-%d").date()
+        except ValueError:
+            return Response(
+                {
+                    "error": "Invalid date format. Both 'date_from' and 'date_to' must be in YYYY-MM-DD format."
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        if date_from > date_to:
+            return Response(
+                {"error": "date_from cannot be later than date_to."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         likes = (
             Like.objects.filter(created_at__date__range=[date_from, date_to])
             .extra({"day": "date(created_at)"})
