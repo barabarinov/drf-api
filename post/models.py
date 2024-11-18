@@ -18,7 +18,10 @@ class Post(models.Model):
         )
 
     def __str__(self) -> str:
-        return f"Post by {self.author.username} ({self.likes_count} likes): {self.content[:15]}..."
+        return (
+            f"Post by {self.author.username} ({self.likes_count} likes): {self.content[:15]}... "
+            f"created at {self.created_at.date()}"
+        )
 
 
 class Like(models.Model):
