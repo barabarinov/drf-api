@@ -44,8 +44,8 @@ class Analytics(APIView):
         date_to = request.query_params.get("date_to", today)
 
         try:
-            date_from = datetime.strptime(date_from, "%Y-%m-%d").date()
-            date_to = datetime.strptime(date_to, "%Y-%m-%d").date()
+            date_from = datetime.strptime(date_from.strip(), "%Y-%m-%d").date()
+            date_to = datetime.strptime(date_to.strip(), "%Y-%m-%d").date()
         except ValueError:
             return Response(
                 {
