@@ -11,6 +11,8 @@ from rest_framework.views import APIView
 from .models import Post, Like
 from .serializers import PostSerializer
 
+DATE_FORMAT = "%Y-%m-%d"
+
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
@@ -39,13 +41,15 @@ class Analytics(APIView):
 
     def get(self, request: Request) -> Response:
         today = datetime.today().date()
+        default_date_from = today.replace(day=1).strftime(DATE_FORMAT)
+        default_date_to = today.strftime(DATE_FORMAT)
 
-        date_from = request.query_params.get("date_from", today.replace(day=1))
-        date_to = request.query_params.get("date_to", today)
+        date_from = request.query_params.get("date_from", default_date_from)
+        date_to = request.query_params.get("date_to", default_date_to)
 
         try:
-            date_from = datetime.strptime(date_from.strip(), "%Y-%m-%d").date()
-            date_to = datetime.strptime(date_to.strip(), "%Y-%m-%d").date()
+            date_from = datetime.strptime(date_from.strip(), DATE_FORMAT).date()
+            date_to = datetime.strptime(date_to.strip(), DATE_FORMAT).date()
         except ValueError:
             return Response(
                 {
