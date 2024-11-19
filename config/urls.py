@@ -5,4 +5,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("post.urls")),
     path("api/users/", include("user.urls")),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
